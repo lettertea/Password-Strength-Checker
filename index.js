@@ -7,7 +7,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const index = require('./routes/index');
-const users = require('./routes/users');
 const config = require('./config/database');
 const passport = require('passport');
 const flash = require('connect-flash');
@@ -52,7 +51,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', index);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
