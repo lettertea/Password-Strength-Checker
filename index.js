@@ -1,3 +1,5 @@
+const express = require('express');
+const app = express();
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -6,13 +8,12 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const index = require('./routes/index');
 const users = require('./routes/users');
-const app = require('express');
 const config = require('./config/database');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 const port = process.env.PORT || 1000;
-
+const crypto = require('crypto').randomBytes(256).toString('hex');
 
 mongoose.connect(config.uri, {
     useMongoClient: true,
@@ -35,7 +36,7 @@ require('./config/passport')(passport); // pass passport for configuration
 
 
 // required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(session({ secret: crypto })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
