@@ -35,7 +35,7 @@ router.post('/signup', passport.authenticate('local-signup', {
 
 // Profile
 router.get('/profile', isLoggedIn, (req, res, next) => {
-    res.render('index', { title: 'Profile', user: req.user });
+    res.render('profile', { title: 'Profile', user: req.user });
 });
 
 router.get('/logout', (req, res, next) => {
