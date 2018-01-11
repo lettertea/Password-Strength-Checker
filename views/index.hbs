@@ -2,9 +2,13 @@
     <div class="container">
         <div class="jumbotron text-center">
             <h1>Node Authentication</h1>
+            {{# if user}}
+            <p>There's not much to do here.</p>
+            {{ else }}
             <p>Login or Register with:</p>
             <a href="/login" class="btn btn-primary"> Local Login</a>
             <a href="/signup" class="btn btn-primary"> Local Signup</a>
+            {{/if}}
         </div>
     </div>
 </body>
