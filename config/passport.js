@@ -27,11 +27,6 @@ module.exports = function(passport) {
         });
     });
 
-    // =========================================================================
-    // LOCAL SIGNUP ============================================================
-    // =========================================================================
-    // we are using named strategies since we have one for login and one for signup
-    // by default, if there was no name, it would just be called 'local'
 
     passport.use('local-signup', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
@@ -46,19 +41,9 @@ module.exports = function(passport) {
                 return re.test(email);
             }
             if (!validateEmail(email)) {
-                return done(null, false, req.flash('signupMessage', 'Invalid email'));
+                return done(null, false, req.flash('signupMessage', 'Invalid email. Make something up.'));
             }
 
-            const validatePassword = (password) => {
-                const re = /^[a-zA-Z0-9!@#$%^&*]{8,48}$/;
-                return re.test(password);
-            }
-            if (!validatePassword(password)) {
-                return done(null, false, req.flash('signupMessage', 'Password must be 8-48 characters long'));
-            }
-
-            // find a user whose email is the same as the forms email
-            // we are checking to see if the user trying to login already exists
             User.findOne({ 'local.email': email }, function(err, user) {
                 // if there are any errors, return the error
                 if (err)

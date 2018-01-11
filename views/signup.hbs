@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="col-sm-6 col-sm-offset-3">
-        <h1><span class="fa fa-sign-in"></span> Signup</h1>
+        <h1>Signup</h1>
         <!-- show any messages that come back with authentication -->
         {{# if message}}
         <div class="alert alert-danger">
@@ -34,11 +34,11 @@
 
 <script type="text/javascript">
 const strength = {
-    0: "Worst ☹",
-    1: "Bad ☹",
-    2: "Weak ☹",
-    3: "Good ☺",
-    4: "Strong ☻"
+    0: "Poor",
+    1: "Mediocre",
+    2: "Okay",
+    3: "Good",
+    4: "Strong"
 }
 
 const password = document.getElementById('password');
@@ -54,7 +54,7 @@ password.addEventListener('input', () => {
 
     // Update the text indicator
     if (val !== "") {
-        text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<span class='feedback'>" + result.feedback.warning + " " + result.feedback.suggestions + "</span";
+        text.innerHTML = "Strength: " + "<strong>" + strength[result.score] + "</strong>" + "<span class='feedback'> <br />" + "Guesses to crack: " + result.guesses + "<br />" + result.feedback.warning + " " + result.feedback.suggestions + "</span";
     } else {
         text.innerHTML = "";
     }
